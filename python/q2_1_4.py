@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 from matchPics import matchPics
-from helper import plotMatches
+from findCorrespondences import plotMatches
 
 cv_cover = cv2.imread('../data/cv_cover.jpg')
 cv_desk = cv2.imread('../data/cv_desk.png')
