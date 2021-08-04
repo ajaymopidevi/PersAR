@@ -3,7 +3,6 @@ import cv2
 
 
 def computeH(x1, x2):
-	#Q2.2.1
 	#Compute the homography between two sets of points
 
 
@@ -13,7 +12,6 @@ def computeH(x1, x2):
 
 
 def computeH_norm(x1, x2):
-	#Q2.2.2
 	#Compute the centroid of the points
 
 
@@ -41,7 +39,6 @@ def computeH_norm(x1, x2):
 
 
 def computeH_ransac(locs1, locs2):
-	#Q2.2.3
 	#Compute the best fitting homography given a list of matching points
 
 
