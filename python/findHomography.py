@@ -4,11 +4,47 @@ import cv2
 
 def computeH(x1, x2):
 	#Compute the homography between two sets of points
+	nPts = x1.shape[0]
+	A = np.zeros(((nPts * 2), 9))
+	idx = 0
+	for i in range(nPts):
+		pt1 = x1[i, :]
+		pt2 = x2[i, :]
+		pt1_x = pt1[0]
+		pt1_y = pt1[1]
+		pt2_x = pt2[0]
+		pt2_y = pt2[1]
+		A[idx, :] = np.array([
+			-pt1_x,
+			-pt1_y,
+			-1,
+			0,
+			0,
+			0,
+			pt1_x * pt2_x,
+			pt1_y * pt2_x,
+			pt2_x
+		])
+		idx = idx + 1
+		A[idx, :] = np.array([
+			0,
+			0,
+			0,
+			-pt1_x,
+			-pt1_y,
+			-1,
+			pt1_x * pt2_y,
+			pt1_y * pt2_y,
+			pt2_y
+		])
+		idx = idx + 1
 
+	U, S, V = np.linalg.svd(A)
+	H = V.T[:, -1]
 
+	H1to2 = H.reshape((3, 3))
 
-
-	return H2to1
+	return H1to2
 
 
 def computeH_norm(x1, x2):
