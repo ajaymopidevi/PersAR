@@ -9,7 +9,7 @@ https://user-images.githubusercontent.com/28349806/127646131-16042234-6a18-4c58-
 
 
 ## Algorithm:
-1. **Detect the matching keypoints between the two frames**
+1. **findCorrespondences**: Detect the matching keypoints between the two frames
    * Compute keypoints using FAST detector
    * Compute descriptors for each keypoint using BRIEF descriptor
    * Using the descriptors, find the matching keypoints between two images
