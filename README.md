@@ -16,7 +16,7 @@ https://user-images.githubusercontent.com/28349806/127646131-16042234-6a18-4c58-
      
      Used *FAST+BRIEF* to extract the features in realtime, while maintaining the performance similar to SIFT
      
-2. **Find Homography Matrix using RANSAC**
+2. **findHomography**: Homography Matrix using RANSAC
    * Minimum of 4 matching keypoints are required to compute Homography Matrix (8 DOF)
    * Randomly select M keypoints (M>=4) and find Homgraphy Matrix H using SVD
    * Compute the inliers where ||pi’, Hpi|| < ε i.e reprojection_error < threshold
