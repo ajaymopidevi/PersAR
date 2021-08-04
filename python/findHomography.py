@@ -77,7 +77,7 @@ def computeH_norm(x1, x2):
 	H1to2 = np.matmul(np.linalg.inv(T2), np.matmul(H1to2, T1))
 	H1to2 = H1to2 / H1to2[2, 2]
 
-	return H2to1
+	return H1to2
 
 
 
