@@ -71,11 +71,11 @@ def computeH_norm(x1, x2):
 	T2 = np.array([[1 / max2[0], 0, -mean2[0] / max2[0]], [0, 1 / max2[1], -mean2[1] / max2[1]], [0, 0, 1]])
 
 	# Compute homography
-	H_t = computeH(x1_t, x2_t)
+	H1to2 = computeH(x1_t, x2_t)
 
 	# Denormalization
-	H2to1 = np.matmul(np.linalg.inv(T2), np.matmul(H_t, T1))
-	H2to1 = H2to1 / H2to1[2, 2]
+	H1to2 = np.matmul(np.linalg.inv(T2), np.matmul(H1to2, T1))
+	H1to2 = H1to2 / H1to2[2, 2]
 
 	return H2to1
 
