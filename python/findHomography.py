@@ -49,25 +49,33 @@ def computeH(x1, x2):
 
 def computeH_norm(x1, x2):
 	#Compute the centroid of the points
+	# Shift the origin of the points to the centroid
+	# Normalize the points so that the largest distance from the origin is equal to sqrt(2)
 
+	mean1 = np.mean(x1, axis=0)
+	mean2 = np.mean(x2, axis=0)
 
-	#Shift the origin of the points to the centroid
+	x1_t = x1 - mean1
+	x2_t = x2 - mean2
 
+	max1 = np.sqrt(np.max(x1_t ** 2, 0))
+	x1_t = x1_t / max1
 
-	#Normalize the points so that the largest distance from the origin is equal to sqrt(2)
+	max2 = np.sqrt(np.max(x2_t ** 2, 0))
+	x2_t = x2_t / max2
 
+	# Similarity transform 1
+	T1 = np.array([[1 / max1[0], 0, -mean1[0] / max1[0]], [0, 1 / max1[1], -mean1[1] / max1[1]], [0, 0, 1]])
 
-	#Similarity transform 1
+	# Similarity transform 2
+	T2 = np.array([[1 / max2[0], 0, -mean2[0] / max2[0]], [0, 1 / max2[1], -mean2[1] / max2[1]], [0, 0, 1]])
 
+	# Compute homography
+	H_t = computeH(x1_t, x2_t)
 
-	#Similarity transform 2
-
-
-	#Compute homography
-
-
-	#Denormalization
-	
+	# Denormalization
+	H2to1 = np.matmul(np.linalg.inv(T2), np.matmul(H_t, T1))
+	H2to1 = H2to1 / H2to1[2, 2]
 
 	return H2to1
 
