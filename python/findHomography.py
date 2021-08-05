@@ -1,5 +1,4 @@
 import numpy as np
-import cv2
 
 
 def computeH(x1, x2):
@@ -85,6 +84,7 @@ def computeH_norm(x1, x2):
 
 def computeH_ransac(locs1, locs2):
 	# Compute the best fitting homography given a list of matching points
+
 	N = locs1.shape[0]
 	Pts = list(np.arange(N))
 	inliers = 0
