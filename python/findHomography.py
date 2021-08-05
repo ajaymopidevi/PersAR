@@ -88,12 +88,13 @@ def computeH_ransac(locs1, locs2):
 	Pts = list(np.arange(N))
 	inliers = 0
 	inliers_threshold = int(0.9 * N)
+	maxiter = 100
 	distance_threshold = 5
 
 	bestH = np.zeros((3, 3))
-	for i in range(100):
+	for i in range(maxiter):
 		samples = random.sample(Pts, 4)
-		# print(samples)
+
 		x1 = []
 		x2 = []
 		for j in samples:
