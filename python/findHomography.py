@@ -105,16 +105,17 @@ def computeH_ransac(locs1, locs2):
 
 		# Find the inliers
 		# Instead of calculating for each point, it can be done for all locs1 together
-		# x1 = np.hstack((locs1,np.ones((N,1))))
 		x1 = np.ones((N, 3))
 		x1[:, :-1] = locs1
 		x1 = x1.transpose()
 		pred_x2 = np.matmul(H, x1)
+
 		# Dividing by w
 		pred_x2 = pred_x2.transpose()
 		pred_x2 = pred_x2[:, :-1] / (pred_x2[:, -1].reshape((N, 1)))
 		diff = np.sum((pred_x2 - locs2) ** 2, axis=1)
 		n_inliers = len(np.where(diff < distance_threshold)[0])
+
 		# This condition can be varied
 		if (n_inliers >= inliers_threshold):
 			return H
@@ -122,9 +123,6 @@ def computeH_ransac(locs1, locs2):
 			inliers = n_inliers
 			bestH = H
 
-	# print("Inliers: ",inliers)
-	# print("Out of : ",N)
-	#
 	# print("Inliers percentage: ",inliers/N)
 	return bestH
 
