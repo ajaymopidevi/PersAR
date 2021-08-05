@@ -83,12 +83,50 @@ def computeH_norm(x1, x2):
 
 
 def computeH_ransac(locs1, locs2):
-	#Compute the best fitting homography given a list of matching points
+	# Compute the best fitting homography given a list of matching points
+	N = locs1.shape[0]
+	Pts = list(np.arange(N))
+	inliers = 0
+	inliers_threshold = int(0.9 * N)
+	distance_threshold = 5
 
+	bestH = np.zeros((3, 3))
+	for i in range(100):
+		samples = random.sample(Pts, 4)
+		# print(samples)
+		x1 = []
+		x2 = []
+		for j in samples:
+			x1.append(locs1[j, :])
+			x2.append(locs2[j, :])
+		x1 = np.array(x1)
+		x2 = np.array(x2)
+		H = computeH_norm(x1, x2)
 
+		# Find the inliers
+		# Instead of calculating for each point, it can be done for all locs1 together
+		# x1 = np.hstack((locs1,np.ones((N,1))))
+		x1 = np.ones((N, 3))
+		x1[:, :-1] = locs1
+		x1 = x1.transpose()
+		pred_x2 = np.matmul(H, x1)
+		# Dividing by w
+		pred_x2 = pred_x2.transpose()
+		pred_x2 = pred_x2[:, :-1] / (pred_x2[:, -1].reshape((N, 1)))
+		diff = np.sum((pred_x2 - locs2) ** 2, axis=1)
+		n_inliers = len(np.where(diff < distance_threshold)[0])
+		# This condition can be varied
+		if (n_inliers >= inliers_threshold):
+			return H
+		elif (n_inliers > inliers):
+			inliers = n_inliers
+			bestH = H
 
-	return bestH2to1, inliers
-
+	# print("Inliers: ",inliers)
+	# print("Out of : ",N)
+	#
+	# print("Inliers percentage: ",inliers/N)
+	return bestH
 
 
 def compositeH(H2to1, template, img):
