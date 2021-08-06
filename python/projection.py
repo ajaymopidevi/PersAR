@@ -4,6 +4,7 @@ def Warping(H, template, img):
 	imgShape = img.shape
 	templateShape = template.shape
 
+	composite_img = img
 	for i in range(templateShape[0]):
 		for j in range(templateShape[1]):
 			idx1 = np.array([i, j, 1])
@@ -40,6 +41,5 @@ def invWarping(H, template, img):
 				# Intially floor , but later use bilinear interpolation
 				index = [np.int(idx2[0]), np.int(idx2[1])]
 				composite_img[i, j, :] = template[index[0], index[1], :]
-
 
 	return composite_img
