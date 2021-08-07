@@ -43,3 +43,30 @@ def invWarping(H, template, img):
 				composite_img[i, j, :] = template[index[0], index[1], :]
 
 	return composite_img
+
+def cv2Warping(H2to1, template, img):
+	# Create a composite image after warping the template image on top
+	# of the image using the homography
+
+	# Note that the homography we compute is from the image to the template;
+	# x_template = H2to1*x_photo
+	# For warping the template to the image, we need to invert it.
+
+	templateShape = template.shape
+	imgShape = img.shape
+	h = imgShape[0]
+	w = imgShape[1]
+	# Create mask of same size as template
+	mask = np.ones(templateShape)
+
+	# Warp mask by appropriate homography
+	transform_mask = cv2.warpPerspective(mask, H2to1, (w,h))
+	transform_mask = np.where(transform_mask < 1, 0, transform_mask)
+
+	# Warp template by appropriate homography
+	composite_img = cv2.warpPerspective(template, H2to1, (w,h))
+
+	# Use mask to combine the warped template and the image
+	composite_img = composite_img + (1 - transform_mask.astype(int)) * img
+
+	return composite_img
