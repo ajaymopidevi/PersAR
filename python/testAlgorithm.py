@@ -9,7 +9,7 @@ from projection import Warping, invWarping, cv2Warping
 
 
 
-#Write script for Q2.2.4
+#Test the Algorithm
 cv_cover = cv2.imread('../data/cv_cover.jpg')
 cv_desk = cv2.imread('../data/cv_desk.png')
 hp_cover = cv2.imread('../data/hp_cover.jpg')
@@ -34,5 +34,8 @@ height = cv_cover.shape[0]
 width = cv_cover.shape[1]
 resized_hp_cover = cv2.resize(hp_cover,(width, height), interpolation=cv2.INTER_LINEAR)
 
-output = invWarping(H,resized_hp_cover, cv_desk)
-cv2.imwrite("InverseWarpingProjection.png",output)
+output = Warping(H,resized_hp_cover, cv_desk)
+cv2.imwrite("WarpingProjection.png",output)
+
+#output = invWarping(H,resized_hp_cover, cv_desk)
+#cv2.imwrite("InverseWarpingProjection.png",output)
