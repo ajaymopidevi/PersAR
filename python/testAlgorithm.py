@@ -35,7 +35,7 @@ width = cv_cover.shape[1]
 resized_hp_cover = cv2.resize(hp_cover,(width, height), interpolation=cv2.INTER_LINEAR)
 
 output = Warping(H,resized_hp_cover, cv_desk)
-cv2.imwrite("WarpingProjection.png",output)
+cv2.imwrite("../results/WarpingProjection.png",output)
 
 #output = invWarping(H,resized_hp_cover, cv_desk)
-#cv2.imwrite("InverseWarpingProjection.png",output)
+#cv2.imwrite("../results/InverseWarpingProjection.png",output)
