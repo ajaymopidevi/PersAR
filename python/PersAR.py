@@ -1,16 +1,15 @@
 import numpy as np
 import cv2
+import imageio
+
 #Import necessary functions
 from loadVid import loadVid
 from findCorrespondences import corner_detection, computeBrief, briefMatch
 from matchPics import matchPics
 from findHomography import computeH_ransac
 from projection import Warping, invWarping, cv2Warping
-import time
-import imageio
 
 
-#Write script for Q3.1
 book =r'..\data\book.mov'
 ar_source = r'..\data\ar_source.mov'
 cv_cover = r'..\data\cv_cover.jpg'
@@ -27,11 +26,10 @@ cv_cover_kp = corner_detection(cv_cover_img)
 cv_cover_des, locs1 = computeBrief(cv_cover_img, cv_cover_kp)
 
 
-writer1 = imageio.get_writer('AR.avi', fps=25)
+writer1 = imageio.get_writer(r'..\results\PersAR.avi', fps=25)
 
 
 for i in range(frames):
-    print("Frame:",i)
     I2 = cv2.cvtColor(book_frames[i],cv2.COLOR_RGB2GRAY)
     I2_kp = corner_detection(I2)
     I2_des, locs2 = computeBrief(I2,I2_kp)
@@ -48,7 +46,6 @@ for i in range(frames):
     resized_frame = cv2.resize(ar_source_frames[i], (width, height), interpolation=cv2.INTER_LINEAR)
 
     output_frame = invWarping(H,resized_frame,book_frames[i])
-    #output_frame = compositeH(H, resized_frame, book_frames[i])
     output_frame = output_frame.astype('uint8')
     writer1.append_data(output_frame)
 
