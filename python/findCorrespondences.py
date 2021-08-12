@@ -68,3 +68,16 @@ def corner_detection(im, sigma=1.5):
 	result_img = skimage.feature.corner_fast(im, PATCHWIDTH)
 	locs = skimage.feature.corner_peaks(result_img, min_distance=1)
 	return locs
+
+
+def cv2ExtractFeatures(img):
+	fast = cv2.FastFeatureDetector_create(30, nonmaxSuppression=True)
+	locs = fast.detect(img)
+	brief = cv2.xfeatures2d.BriefDescriptorExtractor_create()
+	locs, desc = brief.compute(img, locs)
+	return desc, locs
+
+def cv2findMatches(desc1, desc2):
+	bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
+	matches = bf.match(desc1, desc2)
+	return matches
