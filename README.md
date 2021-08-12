@@ -34,3 +34,6 @@ https://user-images.githubusercontent.com/28349806/129227813-7c772761-a2ec-4246-
    * Using binary mask combine the movie frame and book frame
 
 
+Problems with results/PersAR.avi :
+1. Discontinued border lines : Fixed by blurring the mask
+2. Flickering 
