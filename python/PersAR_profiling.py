@@ -101,5 +101,5 @@ writer1.close()
 profiling['total_time'] = time.time() - start_time
 profiling['total_frames'] = float(frames)
 
-with open("profiling.json", "w") as outfile:
+with open("../profiling.json", "w") as outfile:
     json.dump(profiling, outfile, indent=4)
