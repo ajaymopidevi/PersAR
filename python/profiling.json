@@ -1,0 +1,15 @@
+{
+    "book_frames": 50.53176951408386,
+    "ar_source_frames": 24.690979957580566,
+    "feature_detection": 65.26382660865784,
+    "descriptor": 1383.534366607666,
+    "grayscale_conversion": 0.14085054397583008,
+    "findMatches": 464.91706013679504,
+    "H_ransac": 10.657817602157593,
+    "frame_resize": 0.2466566562652588,
+    "warping": 1346.9367954730988,
+    "uint8_output": 0.1537795066833496,
+    "write_frame": 0.7292096614837646,
+    "total_time": 3349.025059223175,
+    "total_frames": 511.0
+}
