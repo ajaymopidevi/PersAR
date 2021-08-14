@@ -68,6 +68,6 @@ def cv2Warping(H2to1, template, img):
 	composite_img = cv2.warpPerspective(template, H2to1, (w,h))
 
 	# Use mask to combine the warped template and the image
-	composite_img = composite_img + (1 - transform_mask.astype(int)) * img
+	composite_img = (transform_mask * composite_img) + ((1 - transform_mask) * img)
 
 	return composite_img
