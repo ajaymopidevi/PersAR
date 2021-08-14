@@ -38,7 +38,7 @@ Problems with results/PersAR.avi :
 1. Discontinued border lines : Fixed by blurring the mask
 2. Flickering 
 
-#Profiling
+## Profiling
 1. Pre-processing:
    * "book_frames": 50.53176951408386
    * "ar_source_frames": 24.690979957580566
