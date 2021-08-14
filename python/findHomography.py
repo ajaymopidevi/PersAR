@@ -82,14 +82,14 @@ def computeH_norm(x1, x2):
 
 
 
-def computeH_ransac(locs1, locs2):
+def computeH_ransac(locs1, locs2, maxiter=100):
 	# Compute the best fitting homography given a list of matching points
 
 	N = locs1.shape[0]
 	Pts = list(np.arange(N))
 	inliers = 0
 	inliers_threshold = int(0.9 * N)
-	maxiter = 100
+	#maxiter = 100
 	distance_threshold = 5
 
 	bestH = np.zeros((3, 3))
@@ -103,7 +103,10 @@ def computeH_ransac(locs1, locs2):
 			x2.append(locs2[j, :])
 		x1 = np.array(x1)
 		x2 = np.array(x2)
-		H = computeH_norm(x1, x2)
+		try:
+			H = computeH_norm(x1, x2)
+		except np.linalg.LinAlgError:
+			H = np.eye(3)
 
 		# Find the inliers
 		# Instead of calculating for each point, it can be done for all locs1 together
