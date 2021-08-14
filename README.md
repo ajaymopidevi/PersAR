@@ -38,7 +38,7 @@ Problems with results/PersAR.avi :
 1. Discontinued border lines : Fixed by blurring the mask
 2. Flickering 
 
-#Profiling
+## Profiling
 1. Pre-processing:
    * "book_frames": 50.53176951408386
    * "ar_source_frames": 24.690979957580566
@@ -57,4 +57,6 @@ Problems with results/PersAR.avi :
 * "write_frame": 0.7292096614837646
 
 "total_time": 3349.025059223175 for 511 frames
+
+For the basic algorithm, each frame takes 6.55s, with warping, descriptor and findMatches taking most of the time
 
