@@ -58,3 +58,5 @@ Problems with results/PersAR.avi :
 
 "total_time": 3349.025059223175 for 511 frames
 
+For the basic algorithm, each frame takes 6.55s, with warping, descriptor and findMatches taking most of the time
+
