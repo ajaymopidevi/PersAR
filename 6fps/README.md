@@ -4,6 +4,7 @@ The code is optimized to run at 6.45fps
 * Use cv2 functions to find the keypoints, descriptors and finally match them
 * After matching, use only 100 best matches for finding Homography matrix
 * Use cv2 function for warping
+* Instead of storing all the frames in a video, read and process the frame and continue to next frame.
 
 #Profiling
 1. Pre-processing:
