@@ -1,10 +1,12 @@
 The code is optimized to run at 6.45fps
 
-## Changes: 
+## Optimizations: 
 * Use cv2 functions to find the keypoints, descriptors and finally match them
 * After matching, use only 100 best matches for finding Homography matrix
 * Use cv2 function (warpPerspective) for warping 
 * Instead of storing all the frames in a video, read and process the frame and continue to next frame.
+
+**_All these optimizations achieve the similar performance with the original algorithm_**
 
 ## Profiling
 1. Pre-processing:
@@ -24,3 +26,6 @@ The code is optimized to run at 6.45fps
 * "write_frame": 0.6327536106109619
 
 "total_time": 79.18380784988403 for 511 frames
+
+
+**Please copy these files to python folder and use them**
