@@ -71,7 +71,7 @@ def corner_detection(im, sigma=1.5):
 
 
 def cv2ExtractFeatures(img):
-	fast = cv2.FastFeatureDetector_create(30,nonmaxSuppression=True)
+	fast = cv2.FastFeatureDetector_create(25,nonmaxSuppression=True)
 	locs = fast.detect(img)
 	brief = cv2.xfeatures2d.BriefDescriptorExtractor_create()
 	locs, desc = brief.compute(img, locs)

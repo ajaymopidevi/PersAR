@@ -1,7 +1,7 @@
-The code is optimized to run at 6.45fps
+The code is optimized to run at 20.62 fps
 
 ## Optimizations: 
-* Use cv2 functions to find the keypoints with a _Threshold= 30 and NonmaxSupression=True_
+* Use cv2 functions to find the keypoints with a _Threshold= 25 and NonmaxSupression=True_
 * Use cv2 function to compute descriptors for the keypoints and finally match them
 * After matching, use only 100 best matches for finding Homography matrix
 * Use cv2 function (warpPerspective) for warping 
@@ -11,22 +11,22 @@ The code is optimized to run at 6.45fps
 
 ## Profiling
 1. Pre-processing:
-   * "book_frames": 0.3345210552215576
-   * "movie_frames": 0.24173760414123535
+   * "book_frames": 0.3064250946044922
+   * "movie_frames": 0.22094511985778809
 2. findCorrespondences:
-   * "grayscale_conversion": 0.07948517799377441,
-   * "features": 1.9628911018371582,
-   * "findMatches": 5.395456552505493,
+   * "grayscale_conversion": 0.09019780158996582,
+   * "features": 2.0005733966827393,
+   * "findMatches": 6.222008466720581,
 3. findHomography:
-   * "H_ransac": 8.415274143218994,
+   * "H_ransac": 6.559981346130371,
 4. projection:
-   * "frame_resize": 0.19417428970336914,
-   * "warping": 7.382027864456177,
-   * "uint8_output": 0.631821870803833,
+   * "frame_resize": 0.16079449653625488,
+   * "warping": 7.252535820007324,
+   * "uint8_output": 0.4972050189971924,
 5. Post-processing
-* "write_frame": 0.7568881511688232
+* "write_frame": 0.5810785293579102
 
-"total_time": 26.32524585723877 for 511 frames
+"total_time": 24.78570556640625 for 511 frames
 
 
 **Please copy these files to python folder and use them**
