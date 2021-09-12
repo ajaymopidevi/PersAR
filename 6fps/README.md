@@ -27,5 +27,11 @@ The code is optimized to run at 6.45fps
 
 "total_time": 79.18380784988403 for 511 frames
 
+Reasons findMatches takes 52s:
+* FAST detector generates lots of keypoins (aprrox 4000)
+* So, a lots of descriptors also need to be computed
+* After finding matches for all these keypoints, they are sorted to get best 100 matches. This sorting is taking a lot of time in 52s.
+
+In order to further reduce the latency, reduce the number of keypoints detected by FAST detector.
 
 **Please copy these files to python folder and use them**
