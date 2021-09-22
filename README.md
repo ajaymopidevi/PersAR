@@ -1,18 +1,21 @@
 # PersAR
  Simple AR application
  
- This is a part of the assignment for the [Computer Vision](https://www.cs.cmu.edu/~16385/) Course offfered bu CMU
  
  
-
-
-
-https://user-images.githubusercontent.com/28349806/129227813-7c772761-a2ec-4246-bfe4-ffe0993b27f9.mp4
+ 
 
 
 
 
-## Algorithm:
+
+https://user-images.githubusercontent.com/28349806/134354609-fc7a13c0-d915-47ab-ab79-4c90e5d367fa.mp4
+
+
+
+
+
+## Basic Algorithm:
 1. **findCorrespondences**: Detect the matching keypoints between the two frames
    * Compute keypoints using FAST detector
    * Compute descriptors for each keypoint using BRIEF descriptor
@@ -35,28 +38,30 @@ https://user-images.githubusercontent.com/28349806/129227813-7c772761-a2ec-4246-
 
 
 Problems with results/PersAR.avi :
-1. Discontinued border lines : Fixed by blurring the mask
+1. Discontinued border lines 
 2. Flickering 
+Both fixed by Gaussian Blending
 
-## Profiling
+## Profiling for 30fps:
 1. Pre-processing:
-   * "book_frames": 50.53176951408386
-   * "ar_source_frames": 24.690979957580566
+   * "book_frames": 0.33844804763793945
+   * "movie_frames": 0.2671029567718506
 2. findCorrespondences:
-   * "grayscale_conversion": 0.14085054397583008,
-   * "feature_detection": 65.26382660865784,
-   * "descriptor": 1383.534366607666,
-   * "findMatches": 464.91706013679504,
+   * "grayscale_conversion": 0.09944319725036621,
+   * "features": 1.2347221374511719,
+   * "findMatches": 1.730224847793579,
 3. findHomography:
-   * "H_ransac": 10.657817602157593,
+   * "H_ransac": 3.242617607116699,
 4. projection:
-   * "frame_resize": 0.2466566562652588,
-   * "warping": 1346.9367954730988,
-   * "uint8_output": 0.1537795066833496,
+   * "frame_resize": 0.15931916236877441,
+   * "warping": 7.088443994522095,
+   * "uint8_output": 0.5946335792541504,
 5. Post-processing
-* "write_frame": 0.7292096614837646
+* "write_frame": 0.5731518268585205
 
-"total_time": 3349.025059223175 for 511 frames
+"total_time": 16.11925458908081 for 511 frames
 
-For the basic algorithm, each frame takes 6.55s, with warping, descriptor and findMatches taking most of the time
 
+For the 30fps algorithm, each frame takes 31.5ms i.e 31.7 fps
+
+NOTE: The input videos are from [Computer Vision](https://www.cs.cmu.edu/~16385/) Course offfered by CMU
